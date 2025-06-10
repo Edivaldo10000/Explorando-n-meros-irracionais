@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explorando o Número e</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- MathJax para renderização LaTeX -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Explorando o Número <em>e</em></h1>
+    <h2>Da demonstração à aplicação no cotidiano</h2>
+
+    <h3>Introdução</h3>
+
+    <p>
+      Como parte do estudo dos números irracionais, é fundamental analisarmos a origem e a natureza do número <em>e</em>,
+      uma constante irracional de grande relevância na matemática. Para compreendê-lo plenamente, é necessário revisitar
+      o surgimento de um conceito essencial para o seu desenvolvimento: os logaritmos.
+    </p>
+
+    <p>
+      A palavra logaritmo tem origem no grego, sendo formada por <em>lógos</em> (razão, discurso) e <em>arithmós</em> (número),
+      podendo ser traduzida como “razão numérica”. O símbolo <code>log</code>, amplamente utilizado atualmente, deriva do termo
+      inglês <em>logarithm</em>, cuja adoção é atribuída ao astrônomo Johannes Kepler.
+    </p>
+
+    <p>
+      Os logaritmos foram introduzidos por John Napier (1550–1617), com o objetivo de simplificar os longos e trabalhosos
+      cálculos da época. Operações como multiplicações e divisões entre números grandes exigiam muito tempo e esforço.
+      Napier propôs um método pelo qual multiplicações poderiam ser transformadas em somas. Sua obra mais conhecida,
+      onde apresenta suas primeiras tabelas, foi intitulada <em>Mirifici Logarithmorum Canonis Descriptio</em> (1614),
+      traduzida como <em>Descrição da Maravilhosa Tabela de Logaritmos</em>.
+    </p>
+
+    <p>
+      Posteriormente, o matemático inglês Henry Briggs (1561–1631) aprimorou o trabalho de Napier ao propor o uso da base 10,
+      originando os logaritmos decimais. Com o tempo, passou-se a estudar logaritmos em outras bases, destacando-se o
+      logaritmo natural, representado por <code>ln(x)</code>, que corresponde ao logaritmo de base <em>e</em>.
+    </p>
+
+    <p>
+      Para ilustrar a origem do número <em>e</em>, consideremos um banco que oferecesse juros de 100% ao ano.
+      Se os juros fossem creditados uma vez ao ano, R$ 1,00 se tornaria R$ 2,00.
+      Se creditados semestralmente:  
+      \( \left(1 + \frac{1}{2} \right)^2 = 2{,}25 \).  
+      Trimestralmente:  
+      \( \left(1 + \frac{1}{4} \right)^4 \approx 2{,}4414 \).
+    </p>
+
+    <p>
+      À medida que aumentamos a frequência dos créditos — ou seja, fazendo \( n \to \infty \) — obtemos o limite:
+    </p>
+
+    <p style="text-align: center; font-size: 1.2rem;">
+      \( e = \lim_{n \to \infty} \left(1 + \frac{1}{n} \right)^n \)
+    </p>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="index.html" class="botao">Ir para aproximações numéricas e gráfico</a>
+    </div>
+  </div>
+
+  <footer class="rodape">
+    <p><strong>Autor:</strong> Edivaldo Ramos Batista – Todos os direitos reservados</p>
+  </footer>
+
+</body>
+</html>

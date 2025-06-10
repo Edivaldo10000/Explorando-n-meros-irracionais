@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aproximações para o Número e</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- MathJax para fórmulas matemáticas -->
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <!-- Chart.js para o gráfico -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Fórmula Característica do Número <em>e</em></h1>
+    <p class="formula">
+      \( e = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n \)
+    </p>
+
+    <h2>Aproximações Numéricas</h2>
+    <table id="aproximacoes">
+      <thead>
+        <tr>
+          <th>n</th>
+          <th>\( \left(1 + \frac{1}{n} \right)^n \)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Preenchido por JavaScript -->
+      </tbody>
+    </table>
+
+    <h2>Gráfico de Convergência</h2>
+    <canvas id="grafico-e" width="600" height="400"></canvas>
+  </main>
+
+ <footer>
+    <hr />
+    <p><strong>Autor:</strong> Edivaldo Ramos Batista</p>
+    <p style="margin-top: 1rem;">&copy; 2025 - Projeto Educacional</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+<div style="text-align: center; margin-top: 30px;">
+  <a href="introducao.html" class="botao">Voltar à introdução</a>
+</div>
+
+
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aproximações de e</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Aproximações numéricas do número <em>e</em></h1>
+    <p>
+      A fórmula clássica para aproximar o número <em>e</em> é:
+      \( e = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n \)
+    </p>
+
+    <table border="1" style="margin: 20px auto;">
+      <thead>
+        <tr><th>n</th><th>Aproximação de e</th></tr>
+      </thead>
+      <tbody id="tabela-valores"></tbody>
+    </table>
+
+    <canvas id="meuGrafico" width="600" height="300"></canvas>
+
+    <!-- Campo interativo -->
+    <div style="margin-top: 30px; text-align: center;">
+      <h3>Experimente adicionar novos valores de n:</h3>
+      <input type="number" id="inputN" placeholder="Digite um valor para n" />
+      <button onclick="adicionarPonto()">Adicionar ponto</button>
+    </div>
+
+    <!-- Botão para voltar à introdução -->
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="introducao.html" class="botao">Voltar à introdução</a>
+    </div>
+  </div>
+
+  <footer class="rodape">
+    <p><strong>Autor:</strong> Edivaldo Ramos Batista – Todos os direitos reservados</p>
+  </footer>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script>
+    const tabela = document.getElementById("tabela-valores");
+    let dadosGrafico = [
+      { n: 1 },
+      { n: 2 },
+      { n: 4 },
+      { n: 10 }
+    ];
+
+    function calcularValor(n) {
+      return Math.pow(1 + 1 / n, n);
+    }
+
+    function atualizarTabela() {
+      tabela.innerHTML = "";
+      dadosGrafico.forEach(p => {
+        const linha = document.createElement("tr");
+        const valor = calcularValor(p.n);
+        linha.innerHTML = `<td>${p.n}</td><td>${valor.toFixed(10)}</td>`;
+        tabela.appendChild(linha);
+      });
+    }
+
+    atualizarTabela();
+
+    const ctx = document.getElementById('meuGrafico').getContext('2d');
+    const grafico = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: dadosGrafico.map(p => p.n),
+        datasets: [{
+          label: 'Aproximação de e',
+          data: dadosGrafico.map(p => calcularValor(p.n)),
+          borderColor: 'blue',
+          fill: false
+        }]
+      },
+      options: {
+        scales: {
+          x: { title: { display: true, text: 'n' } },
+          y: { title: { display: true, text: 'Valor de e' } }
+        }
+      }
+    });
+
+    function adicionarPonto() {
+      const input = document.getElementById("inputN");
+      const n = parseFloat(input.value);
+      if (!isNaN(n) && n > 0) {
+        dadosGrafico.push({ n: n });
+        dadosGrafico.sort((a, b) => a.n - b.n);
+        atualizarTabela();
+
+        grafico.data.labels = dadosGrafico.map(p => p.n);
+        grafico.data.datasets[0].data = dadosGrafico.map(p => calcularValor(p.n));
+        grafico.update();
+        input.value = "";
+      } else {
+        alert("Digite um número positivo.");
+      }
+    }
+  </script>
+</body>
+</html>
